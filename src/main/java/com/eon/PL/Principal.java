@@ -1,6 +1,7 @@
 package com.eon.PL;
 
 import com.eon.Entities.Maquina;
+import com.eon.Entities.Moneda;
 import com.eon.Entities.Refresco;
 import java.math.BigDecimal;
 import java.util.Iterator;
@@ -11,21 +12,12 @@ public class Principal {
     public static void main(String[] args) {
 
         Maquina maquina = new Maquina();
-        maquina.agregarRefresco(new Refresco("Agua", 10, BigDecimal.valueOf(0.50)));
-        maquina.agregarRefresco(new Refresco("Kas limon", 10, BigDecimal.valueOf(0.60)));
-        maquina.agregarRefresco(new Refresco("Kas naranja", 10, BigDecimal.valueOf(0.60)));
-        maquina.agregarRefresco(new Refresco("Coca-Cola", 10, BigDecimal.valueOf(0.80)));
-        maquina.agregarRefresco(new Refresco("Nestea", 10, BigDecimal.valueOf(0.75)));
-        maquina.agregarRefresco(new Refresco("Pepsi", 10, BigDecimal.valueOf(0.80)));
-        maquina.agregarRefresco(new Refresco("Aquarius", 10, BigDecimal.valueOf(0.90)));
-        maquina.agregarRefresco(new Refresco("Aquarius naranja", 10, BigDecimal.valueOf(0.90)));
-        maquina.agregarRefresco(new Refresco("Fanta naranja", 10, BigDecimal.valueOf(0.89)));
-        maquina.agregarRefresco(new Refresco("Fanta limon", 10, BigDecimal.valueOf(0.89)));
+        maquina = puestaEnMarcha(maquina);
 
         boolean salir = false;
         boolean salirSubmenu = false;
-        int opcionElegida = 0;
-        int opcionElegidaSubmenu = 0;
+        int opcionElegida;
+        int opcionElegidaSubmenu;
         Scanner teclado = new Scanner(System.in);
 
         do {
@@ -42,6 +34,7 @@ public class Principal {
             System.out.println("8. Aquarius naranja.");
             System.out.println("9. Fanta naranja.");
             System.out.println("10. Fanta limon.");
+            System.out.println("11. Añadir monedas.");
             System.out.println("Seleccione una opción: ");
             opcionElegida = teclado.nextInt();
 
@@ -76,7 +69,7 @@ public class Principal {
                                 maquina.getRefrescos().get(0).entregarRefresco();
                                 break;
                         }
-                        
+
                     }
 
                     salirSubmenu = false;
@@ -143,7 +136,7 @@ public class Principal {
 
                     salirSubmenu = false;
                     break;
-                    
+
                 case 4:
 
                     while (salirSubmenu != true) {
@@ -174,7 +167,7 @@ public class Principal {
 
                     salirSubmenu = false;
                     break;
-                    
+
                 case 5:
 
                     while (salirSubmenu != true) {
@@ -205,7 +198,7 @@ public class Principal {
 
                     salirSubmenu = false;
                     break;
-                    
+
                 case 6:
 
                     while (salirSubmenu != true) {
@@ -236,7 +229,7 @@ public class Principal {
 
                     salirSubmenu = false;
                     break;
-                    
+
                 case 7:
 
                     while (salirSubmenu != true) {
@@ -267,7 +260,7 @@ public class Principal {
 
                     salirSubmenu = false;
                     break;
-                    
+
                 case 8:
 
                     while (salirSubmenu != true) {
@@ -298,7 +291,7 @@ public class Principal {
 
                     salirSubmenu = false;
                     break;
-                    
+
                 case 9:
 
                     while (salirSubmenu != true) {
@@ -329,7 +322,7 @@ public class Principal {
 
                     salirSubmenu = false;
                     break;
-                    
+
                 case 10:
 
                     while (salirSubmenu != true) {
@@ -360,7 +353,48 @@ public class Principal {
 
                     salirSubmenu = false;
                     break;
-                    
+
+                case 11:
+
+                    while (salirSubmenu != true) {
+                        System.out.println("0. Volver al menu anterior.");
+                        System.out.println("1. Ver dinero disponible.");
+                        System.out.println("2. Introducir dinero.");
+                        System.out.println("Seleccione una opción: ");
+                        opcionElegidaSubmenu = teclado.nextInt();
+
+                        switch (opcionElegidaSubmenu) {
+
+                            case 0:
+                                salirSubmenu = true;
+                                break;
+                            case 1:
+                                calcularDineroUsuario(maquina);
+                                break;
+                            case 2:
+                                System.out.println("Monedas de 2€");
+                                maquina.agregarMonedaUsuario(new Moneda(BigDecimal.valueOf(200), teclado.nextInt()));
+                                System.out.println("Monedas de 1€");
+                                maquina.agregarMonedaUsuario(new Moneda(BigDecimal.valueOf(100), teclado.nextInt()));
+                                System.out.println("Monedas de 50 centimos");
+                                maquina.agregarMonedaUsuario(new Moneda(BigDecimal.valueOf(50), teclado.nextInt()));
+                                System.out.println("Monedas de 20 centimos€");
+                                maquina.agregarMonedaUsuario(new Moneda(BigDecimal.valueOf(20), teclado.nextInt()));
+                                System.out.println("Monedas de 10 centimos");
+                                maquina.agregarMonedaUsuario(new Moneda(BigDecimal.valueOf(10), teclado.nextInt()));
+                                System.out.println("Monedas de 5 centimos");
+                                maquina.agregarMonedaUsuario(new Moneda(BigDecimal.valueOf(5), teclado.nextInt()));
+                                System.out.println("Monedas de 2 centimos");
+                                maquina.agregarMonedaUsuario(new Moneda(BigDecimal.valueOf(2), teclado.nextInt()));
+                                System.out.println("Monedas de 1 centimo");
+                                maquina.agregarMonedaUsuario(new Moneda(BigDecimal.valueOf(1), teclado.nextInt()));
+                                break;
+                        }
+
+                    }
+
+                    salirSubmenu = false;
+                    break;
             }
 
         } while (salir != true);
@@ -377,6 +411,47 @@ public class Principal {
             System.out.println(" Cantidad: " + refresco.getCantidad());
             System.out.println(" Precio: " + refresco.getPrecio());
         }
+    }
+
+    public static Maquina puestaEnMarcha(Maquina maquina) {
+
+        maquina.agregarRefresco(new Refresco("Agua", 10, BigDecimal.valueOf(0.50)));
+        maquina.agregarRefresco(new Refresco("Kas limon", 10, BigDecimal.valueOf(0.60)));
+        maquina.agregarRefresco(new Refresco("Kas naranja", 10, BigDecimal.valueOf(0.60)));
+        maquina.agregarRefresco(new Refresco("Coca-Cola", 10, BigDecimal.valueOf(0.80)));
+        maquina.agregarRefresco(new Refresco("Nestea", 10, BigDecimal.valueOf(0.75)));
+        maquina.agregarRefresco(new Refresco("Pepsi", 10, BigDecimal.valueOf(0.80)));
+        maquina.agregarRefresco(new Refresco("Aquarius", 10, BigDecimal.valueOf(0.90)));
+        maquina.agregarRefresco(new Refresco("Aquarius naranja", 10, BigDecimal.valueOf(0.90)));
+        maquina.agregarRefresco(new Refresco("Fanta naranja", 10, BigDecimal.valueOf(0.89)));
+        maquina.agregarRefresco(new Refresco("Fanta limon", 10, BigDecimal.valueOf(0.89)));
+
+        maquina.agregarMonedaMaquina(new Moneda(BigDecimal.valueOf(200), 10));
+        maquina.agregarMonedaMaquina(new Moneda(BigDecimal.valueOf(100), 10));
+        maquina.agregarMonedaMaquina(new Moneda(BigDecimal.valueOf(50), 10));
+        maquina.agregarMonedaMaquina(new Moneda(BigDecimal.valueOf(20), 10));
+        maquina.agregarMonedaMaquina(new Moneda(BigDecimal.valueOf(10), 10));
+        maquina.agregarMonedaMaquina(new Moneda(BigDecimal.valueOf(5), 10));
+        maquina.agregarMonedaMaquina(new Moneda(BigDecimal.valueOf(2), 10));
+        maquina.agregarMonedaMaquina(new Moneda(BigDecimal.valueOf(1), 10));
+
+        return maquina;
+    }
+
+    public static void calcularDineroUsuario(Maquina maquina) {
+        maquina.getMonedasUsuario();
+        
+        Iterator<Moneda> it = maquina.getMonedasUsuario().iterator();
+        BigDecimal dineroTotal = null;
+
+        while (it.hasNext()) {
+            Moneda moneda = it.next();
+            System.out.println("Nombre: " + moneda.getValor());
+            System.out.println("Cantidad: " + moneda.getCantidad());
+            dineroTotal = moneda.getValor().multiply(BigDecimal.valueOf(moneda.getCantidad()));
+        }
+        
+        System.out.println(dineroTotal);
     }
 
 }
