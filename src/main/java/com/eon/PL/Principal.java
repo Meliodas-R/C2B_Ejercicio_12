@@ -4,6 +4,7 @@ import com.eon.Entities.Maquina;
 import com.eon.Entities.Moneda;
 import com.eon.Entities.Refresco;
 import java.math.BigDecimal;
+import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -16,8 +17,8 @@ public class Principal {
 
         boolean salir = false;
         boolean salirSubmenu = false;
-        int opcionElegida;
-        int opcionElegidaSubmenu;
+        Integer opcionElegida = 0;
+        int opcionElegidaSubmenu = 20;
         Scanner teclado = new Scanner(System.in);
 
         do {
@@ -35,7 +36,9 @@ public class Principal {
             System.out.println("9. Fanta naranja.");
             System.out.println("10. Fanta limon.");
             System.out.println("11. Añadir monedas.");
+            System.out.println("12. Ver todo.");
             System.out.println("Seleccione una opción: ");
+
             opcionElegida = teclado.nextInt();
 
             switch (opcionElegida) {
@@ -66,8 +69,12 @@ public class Principal {
                                 System.out.println("Quedan " + maquina.getRefrescos().get(0).getCantidad() + " botella/s de agua en stock.");
                                 break;
                             case 3:
+                                try {
                                 maquina.getRefrescos().get(0).entregarRefresco();
-                                break;
+                            } catch (Exception ex) {
+                                System.out.println("No quedan existencias.");
+                            }
+                            break;
                         }
 
                     }
@@ -97,8 +104,12 @@ public class Principal {
                                 System.out.println("Quedan " + maquina.getRefrescos().get(1).getCantidad() + " lata/s de kas limon en stock.");
                                 break;
                             case 3:
+                                try {
                                 maquina.getRefrescos().get(1).entregarRefresco();
-                                break;
+                            } catch (Exception ex) {
+                                System.out.println("No quedan existencias.");
+                            }
+                            break;
                         }
 
                     }
@@ -128,8 +139,12 @@ public class Principal {
                                 System.out.println("Quedan " + maquina.getRefrescos().get(2).getCantidad() + " lata/s de kas naranja en stock.");
                                 break;
                             case 3:
+                                try {
                                 maquina.getRefrescos().get(2).entregarRefresco();
-                                break;
+                            } catch (Exception ex) {
+                                System.out.println("No quedan existencias.");
+                            }
+                            break;
                         }
 
                     }
@@ -159,8 +174,12 @@ public class Principal {
                                 System.out.println("Quedan " + maquina.getRefrescos().get(3).getCantidad() + " lata/s de Coca-Cola en stock.");
                                 break;
                             case 3:
+                                try {
                                 maquina.getRefrescos().get(3).entregarRefresco();
-                                break;
+                            } catch (Exception ex) {
+                                System.out.println("No quedan existencias.");
+                            }
+                            break;
                         }
 
                     }
@@ -190,8 +209,12 @@ public class Principal {
                                 System.out.println("Quedan " + maquina.getRefrescos().get(4).getCantidad() + " lata/s de nestea en stock.");
                                 break;
                             case 3:
+                                try {
                                 maquina.getRefrescos().get(4).entregarRefresco();
-                                break;
+                            } catch (Exception ex) {
+                                System.out.println("No quedan existencias.");
+                            }
+                            break;
                         }
 
                     }
@@ -221,8 +244,12 @@ public class Principal {
                                 System.out.println("Quedan " + maquina.getRefrescos().get(5).getCantidad() + " lata/s de pepsi en stock.");
                                 break;
                             case 3:
+                                try {
                                 maquina.getRefrescos().get(5).entregarRefresco();
-                                break;
+                            } catch (Exception ex) {
+                                System.out.println("No quedan existencias.");
+                            }
+                            break;
                         }
 
                     }
@@ -252,8 +279,12 @@ public class Principal {
                                 System.out.println("Quedan " + maquina.getRefrescos().get(6).getCantidad() + " lata/s de aquarius en stock.");
                                 break;
                             case 3:
+                                try {
                                 maquina.getRefrescos().get(6).entregarRefresco();
-                                break;
+                            } catch (Exception ex) {
+                                System.out.println("No quedan existencias.");
+                            }
+                            break;
                         }
 
                     }
@@ -283,8 +314,12 @@ public class Principal {
                                 System.out.println("Quedan " + maquina.getRefrescos().get(7).getCantidad() + " lata/s de aquarius naranja en stock.");
                                 break;
                             case 3:
+                                try {
                                 maquina.getRefrescos().get(7).entregarRefresco();
-                                break;
+                            } catch (Exception ex) {
+                                System.out.println("No quedan existencias.");
+                            }
+                            break;
                         }
 
                     }
@@ -314,8 +349,12 @@ public class Principal {
                                 System.out.println("Quedan " + maquina.getRefrescos().get(8).getCantidad() + " lata/s de fanta naranja en stock.");
                                 break;
                             case 3:
+                                try {
                                 maquina.getRefrescos().get(8).entregarRefresco();
-                                break;
+                            } catch (Exception ex) {
+                                System.out.println("No quedan existencias.");
+                            }
+                            break;
                         }
 
                     }
@@ -344,9 +383,15 @@ public class Principal {
                             case 2:
                                 System.out.println("Quedan " + maquina.getRefrescos().get(9).getCantidad() + " lata/s de fanta limon en stock.");
                                 break;
-                            case 3:
-                                maquina.getRefrescos().get(9).entregarRefresco();
-                                break;
+                            case 3: {
+                                try {
+                                    maquina.getRefrescos().get(9).entregarRefresco();
+                                } catch (Exception ex) {
+                                    System.out.println("No quedan existencias.");
+                                }
+                            }
+                            break;
+
                         }
 
                     }
@@ -369,7 +414,7 @@ public class Principal {
                                 salirSubmenu = true;
                                 break;
                             case 1:
-                                calcularDineroUsuario(maquina);
+                                System.out.println(calcularDineroUsuario(maquina));
                                 break;
                             case 2:
                                 System.out.println("Monedas de 2€");
@@ -378,7 +423,7 @@ public class Principal {
                                 maquina.agregarMonedaUsuario(new Moneda(BigDecimal.valueOf(100), teclado.nextInt()));
                                 System.out.println("Monedas de 50 centimos");
                                 maquina.agregarMonedaUsuario(new Moneda(BigDecimal.valueOf(50), teclado.nextInt()));
-                                System.out.println("Monedas de 20 centimos€");
+                                System.out.println("Monedas de 20 centimos");
                                 maquina.agregarMonedaUsuario(new Moneda(BigDecimal.valueOf(20), teclado.nextInt()));
                                 System.out.println("Monedas de 10 centimos");
                                 maquina.agregarMonedaUsuario(new Moneda(BigDecimal.valueOf(10), teclado.nextInt()));
@@ -395,6 +440,12 @@ public class Principal {
 
                     salirSubmenu = false;
                     break;
+
+                case 12:
+
+                    mostrar(maquina);
+                    break;
+
             }
 
         } while (salir != true);
@@ -407,9 +458,7 @@ public class Principal {
 
         while (it.hasNext()) {
             Refresco refresco = it.next();
-            System.out.println("Nombre: " + refresco.getNombre());
-            System.out.println(" Cantidad: " + refresco.getCantidad());
-            System.out.println(" Precio: " + refresco.getPrecio());
+            System.out.println(refresco.toString());
         }
     }
 
@@ -438,11 +487,11 @@ public class Principal {
         return maquina;
     }
 
-    public static void calcularDineroUsuario(Maquina maquina) {
+    public static BigDecimal calcularDineroUsuario(Maquina maquina) {
         maquina.getMonedasUsuario();
-        
+
         Iterator<Moneda> it = maquina.getMonedasUsuario().iterator();
-        BigDecimal dineroTotal = null;
+        BigDecimal dineroTotal = BigDecimal.ZERO;
 
         while (it.hasNext()) {
             Moneda moneda = it.next();
@@ -450,8 +499,8 @@ public class Principal {
             System.out.println("Cantidad: " + moneda.getCantidad());
             dineroTotal = moneda.getValor().multiply(BigDecimal.valueOf(moneda.getCantidad()));
         }
-        
-        System.out.println(dineroTotal);
+
+        return dineroTotal;
     }
 
 }

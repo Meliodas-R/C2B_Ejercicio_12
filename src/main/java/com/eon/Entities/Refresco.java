@@ -39,9 +39,11 @@ public class Refresco {
         this.precio = precio;
     }
     
-    public void entregarRefresco(){
+    public void entregarRefresco() throws Exception{
         if(this.cantidad > 0){
             this.cantidad = cantidad - 1;
+        } else {
+            throw new Exception();
         }
         
     }
@@ -52,7 +54,11 @@ public class Refresco {
 
     @Override
     public String toString() {
-        return "Refresco{" + "nombre=" + nombre + ", cantidad=" + cantidad + ", precio=" + precio + '}';
+        //return "Refresco{" + "nombre=" + nombre + ", cantidad=" + cantidad + ", precio=" + precio + '}';
+        return "Refresco: \n"
+                + " -Nombre: " + nombre + "\n"
+                + " -Cantidad: " + cantidad  + "\n"
+                + " -Precio: " + precio;
     }
     
 }
